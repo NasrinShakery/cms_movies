@@ -3,8 +3,11 @@ import React from "react";
 const Navbar = () => {
    return (
       <>
-         <div>Navbar</div>
-      
+         
+               <h1 className="p-6  row-span-2 md:col-span-3 bg-slate-700 rounded-[15px] text-white text-center">
+                  نوبار! 
+               </h1>
+         
       </>
    );
 };
