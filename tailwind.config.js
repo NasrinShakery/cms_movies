@@ -13,7 +13,23 @@ export default {
         "MorabbaLight" : "Morabba Light",
         "MorabbaMedium" : "Morabba Medium",
         "MorabbaBold" : "Morabba Bold",
-     }
+     },
+     screens : {
+      'l': '960px'
+     },
+     colors : {
+      'blueSpace': {
+        light: '#25D5E4',
+        DEFAULT: '#303867',
+        dark: '#191E3A',
+        m : 'rgba(61, 71, 128, 0.65);'
+      },
+      'cornflowerBlue': {
+        light: '#ABAFD1',
+        purple: '#767BFA',
+      },
+      'magnenta' : '#E61E62'
+     },
     },
   },
   plugins: [],

@@ -10,8 +10,8 @@ function App() {
 
    return (
       <>
-         <div className="w-full h-screen p-2 bg-slate-500">
-            <div className="h-full grid gap-4 md:grid-cols-4 grid-rows-12">
+         <div className="p-2 bg-blueSpace">
+            <div className="grid gap-4 md:grid-cols-4 grid-rows-12">
                <Sidebar />
                <Navbar />
                <h1 className="p-6 font-DanaDemibold md:col-span-3 row-span-10   bg-slate-700 rounded-[15px] text-white text-center">
