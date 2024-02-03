@@ -15,7 +15,8 @@ export default {
         "MorabbaBold" : "Morabba Bold",
      },
      screens : {
-      'l': '960px'
+      'l': '960px',
+      '845' : '845px'
      },
      colors : {
       'blueSpace': {

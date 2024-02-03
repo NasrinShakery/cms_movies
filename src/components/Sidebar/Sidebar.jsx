@@ -4,7 +4,7 @@ import React from "react";
 const Sidebar = () => {
    return (
       <>
-         <div className="hidden md:block md:col-span-1 md:row-span-full bg-blueSpace-dark rounded-[30px] border border-black text-white">
+         <div className="hidden l:block md:col-span-1 md:row-span-full bg-blueSpace-dark rounded-[30px] border border-black text-white">
          
             {/* logo */}
             <div className="logo rounded-b-none rounded-t-[30px] bg-blueSpace-m font-MorabbaBold text-3xl flex items-center justify-center h-14 "><span className="text-rose-600">tv.</span>Movie Land</div>
