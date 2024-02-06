@@ -18,6 +18,9 @@ export default {
       'l': '960px',
       '845' : '845px'
      },
+     gridTemplateRows: {
+      'layout' : '70px auto',
+     },
      colors : {
       'blueSpace': {
         light: '#25D5E4',

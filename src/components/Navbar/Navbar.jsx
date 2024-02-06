@@ -3,7 +3,7 @@
 const Navbar = () => {
    return (
       
-         <div className="p-6 row-span-2 md:col-span-3 bg-blueSpace-dark rounded-[25px] text-white text-center flex justify-between items-center">
+         <div className="sticky top-0 z-50 p-6 md:col-span-3 bg-blueSpace-dark rounded-[25px] text-white text-center flex justify-between items-center">
             <div className="flex gap-5 items-center">
                <span className="l:hidden cursor-pointer">
                   <svg xmlns="http://www.w3.org/2000/svg" width="33" height="34" viewBox="0 0 33 34" fill="none">

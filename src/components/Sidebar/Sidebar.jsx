@@ -1,10 +1,10 @@
 import React from "react";
-// import { ReactComponent as Home } from "./images/sidebar_icons/Home.svg"
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
    return (
       <>
-         <div className="hidden l:block md:col-span-1 md:row-span-full bg-blueSpace-dark rounded-[30px] border border-black text-white">
+         <div className="hidden sticky top-0  l:block md:col-span-1 md:row-span-full bg-blueSpace-dark rounded-[30px] border border-black text-white">
          
             {/* logo */}
             <div className="logo rounded-b-none rounded-t-[30px] bg-blueSpace-m font-MorabbaBold text-3xl flex items-center justify-center h-14 "><span className="text-rose-600">tv.</span>Movie Land</div>
@@ -37,9 +37,9 @@ const Sidebar = () => {
                            </g>
                         </svg>
                      </span>
-                     <span className="p-1 text-[25px] tracking-wide font-DanaDemibold  cursor-pointer">
+                     <Link to="/" className="p-1 text-[25px] tracking-wide font-DanaDemibold  cursor-pointer">
                         داشبورد
-                     </span>
+                     </Link>
                   </div>
                   <div className="flex items-center gap-x-2">
                      <span>
@@ -68,9 +68,9 @@ const Sidebar = () => {
                            </g>
                         </svg>
                      </span>
-                     <span className="font-MorabbaBold text-center text-xl tracking-wide  cursor-pointer">
+                     <Link to='/movies' className="font-MorabbaBold text-center text-xl tracking-wide  cursor-pointer">
                         فیلم
-                     </span>
+                     </Link>
                      <span className="rotate-180">
                         <svg
                            width="24"
@@ -116,9 +116,9 @@ const Sidebar = () => {
                            </g>
                         </svg>
                      </span>
-                     <span className="font-MorabbaBold text-center text-xl tracking-wide  cursor-pointer">
+                     <Link to='/serial' className="font-MorabbaBold text-center text-xl tracking-wide  cursor-pointer">
                         سریال
-                     </span>
+                     </Link>
                      <span className="rotate-180">
                         <svg
                            width="24"
@@ -164,9 +164,9 @@ const Sidebar = () => {
                            </g>
                         </svg>
                      </span>
-                     <span className="font-MorabbaBold text-center text-xl tracking-wide cursor-pointer">
+                     <Link to='/animation' className="font-MorabbaBold text-center text-xl tracking-wide cursor-pointer">
                         انیمیشن
-                     </span>
+                     </Link>
                      <span className="rotate-180">
                         <svg
                            width="24"
@@ -224,9 +224,9 @@ const Sidebar = () => {
                            </g>
                         </svg>
                      </span>
-                     <span className="font-MorabbaBold text-center text-xl tracking-wide cursor-pointer">
+                     <Link to='/users' className="font-MorabbaBold text-center text-xl tracking-wide cursor-pointer">
                         کاربران
-                     </span>
+                     </Link>
                      <span className="rotate-180">
                         <svg
                            width="24"
@@ -281,9 +281,9 @@ const Sidebar = () => {
                            </g>
                         </svg>
                      </span>
-                     <span className="font-MorabbaBold text-center text-xl tracking-wide cursor-pointer">
+                     <Link to='comments' className="font-MorabbaBold text-center text-xl tracking-wide cursor-pointer">
                         کامنت
-                     </span>
+                     </Link>
                      <span className="rotate-180">
                         <svg
                            width="24"
@@ -336,9 +336,9 @@ const Sidebar = () => {
                            </defs>
                         </svg>
                      </span>
-                     <span className="font-MorabbaBold text-center text-xl tracking-wide cursor-pointer">
+                     <Link to='setting' className="font-MorabbaBold text-center text-xl tracking-wide cursor-pointer">
                         تنظیمات
-                     </span>
+                     </Link>
                      <span className="rotate-180">
                         <svg
                            width="24"
