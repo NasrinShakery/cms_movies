@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMoviesFromServer } from "../../redux/moviesSlice";
 import MovieCard from "../../components/MovieCard/MovieCard";
+import AddMovieModal from "../../components/AddMovieModal/AddMovieModal";
 
 // import axios from 'axios'
 // import { getMoviesFromServer } from '../../redux/services/movieApi';
@@ -16,7 +17,10 @@ const Movies = () => {
 
    return (
       <div>
-         <h2 className="font-MorabbaMedium text-2xl">همه فیلم ها</h2>
+         <div className=" px-5 flex items-center justify-between">
+            <h2 className="font-MorabbaMedium text-2xl">همه فیلم ها</h2>
+            <AddMovieModal/>
+         </div>
          <div className="moviesWrapper min-h-screen flex justify-center items-center py-5">
             <div className="md:px-4 md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 space-y-4 md:space-y-0">
                {console.log("page movies =>", allMovies)}

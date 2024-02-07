@@ -16,6 +16,13 @@ export const addMoviesToServer = createAsyncThunk(
       .then(res => res.data)
    }
 )
+export const deleteMoviesFromServer = createAsyncThunk(
+   "movies/deleteMoviesFromServer",
+   async (movieID) => {
+      return axios.delete(`https://65c1574edc74300bce8d9620.mockapi.io/movies/${movieID}`)
+      .then(res => res.data)
+   }
+)
 
 const moviesSlice = createSlice({
    name: 'movies',
@@ -23,14 +30,22 @@ const moviesSlice = createSlice({
    reducers: {},
    extraReducers: (builder) => {
       builder.addCase(getMoviesFromServer.fulfilled, (state, action) =>{
-         // console.log('state:',state);
-         // console.log('action:',action.payload);
-         state.push(...action.payload);
+         console.log('get => state:',state);
+         console.log('get => action:',action);
+         console.log('get => action.payload:',action.payload);
+         // state.push(...action.payload)
+         return action.payload
       }),
       builder.addCase(addMoviesToServer.fulfilled, (state, action) =>{
+         state.push(action.payload);
+      }),
+      builder.addCase(deleteMoviesFromServer.fulfilled, (state, action) =>{
          // state.push(...action.payload);
          console.log('state =>', state);
-         console.log('addMoviesToServer => action.payload', action.payload);
+         console.log('deleteMoviesFromServer => action.payload', action.payload);
+
+         const newAllMovies = state.filter(movie => movie.id != action.payload.id);
+         return newAllMovies
       })
    } 
 })
