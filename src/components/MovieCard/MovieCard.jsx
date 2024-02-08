@@ -13,7 +13,10 @@ const MovieCard = ({ id, movieName, movieYear, movieGenre, movieCountry, moviePo
       text: 'آیا از حذف این فیلم مطمدن هستید ؟',
       icon: 'warning',
       confirmButtonText: 'حذف کن',
+      confirmButtonColor: "#d33",
       showCancelButton: true,
+      cancelButtonText: 'لغو',
+      cancelButtonColor: "#3085d6",
     }).then((result) => {
       if (result.isConfirmed) {
          dispatch(deleteMoviesFromServer(id))
