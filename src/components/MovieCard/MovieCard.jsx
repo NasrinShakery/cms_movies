@@ -1,14 +1,32 @@
 import React from "react";
 import { deleteMoviesFromServer } from "../../redux/moviesSlice";
 import {useDispatch } from "react-redux";
-import { getMoviesFromServer } from "../../redux/moviesSlice";
+import Swal from 'sweetalert2'
 
 const MovieCard = ({ id, movieName, movieYear, movieGenre, movieCountry, moviePoster }) => {
 
   const dispatch = useDispatch()
 
   const deleteMovieHandler = () => {
-    dispatch(deleteMoviesFromServer(id))
+   Swal.fire({
+      title: 'حذف!',
+      text: 'آیا از حذف این فیلم مطمدن هستید ؟',
+      icon: 'warning',
+      confirmButtonText: 'حذف کن',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+         dispatch(deleteMoviesFromServer(id))
+        Swal.fire({
+          title: "حذف شد!",
+          text: "حذف با موفقیت انجام شد",
+          icon: "success"
+        });
+      }
+    });
+  }
+  const updateMovieHandler = () => {
+    dispatch(updateMovieHandler(id))
   }
 
    return (
@@ -80,7 +98,7 @@ const MovieCard = ({ id, movieName, movieYear, movieGenre, movieCountry, moviePo
                   <span>{movieYear}</span>
                </div>
                <div className="flex gap-2 mt-4">
-                  <button  className=" text-sm w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">
+                  <button onClick={updateMovieHandler} className=" text-sm w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">
                      ویرایش
                   </button>
                   <button onClick={deleteMovieHandler} className=" text-sm w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">
