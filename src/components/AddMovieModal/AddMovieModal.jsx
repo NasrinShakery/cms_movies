@@ -18,7 +18,7 @@ const AddMovieModal = () => {
          movieGenre: "",
          movieYear: "",
          movieCountry: "",
-         moviePosterName: ""
+         moviePoster: ""
       });
    };
 
@@ -39,6 +39,7 @@ const AddMovieModal = () => {
       event.preventDefault();
       setShowModal(false);
       dispatch(addMoviesToServer(newMovie));
+      console.log('submit ADD MOVIES', newMovie);
       emptyInputs();
    };
    return (

@@ -1,11 +1,13 @@
-import React from "react";
+import React,{useState} from "react";
 import { deleteMoviesFromServer } from "../../redux/moviesSlice";
-import {useDispatch } from "react-redux";
+import {useDispatch, useSelector } from "react-redux";
 import Swal from 'sweetalert2'
+import EditMovieModal from "../EditMovieModal/EditMovieModal";
 
 const MovieCard = ({ id, movieName, movieYear, movieGenre, movieCountry, moviePoster }) => {
 
   const dispatch = useDispatch()
+   const [isOpeneditModal, setIsopenEditModal]= useState(false)
 
   const deleteMovieHandler = () => {
    Swal.fire({
@@ -29,12 +31,17 @@ const MovieCard = ({ id, movieName, movieYear, movieGenre, movieCountry, moviePo
     });
   }
   const updateMovieHandler = () => {
-    dispatch(updateMovieHandler(id))
+   //  dispatch(updateMovieHandler(id))
+   console.log('update cliked...');
+   console.log('setState EditModal = TRUE...');
+   setIsopenEditModal(true)
+   console.log('CARD :  Modal Will OPENED...', movieName);
+
   }
 
    return (
       <>
-         {console.log("Card =>", movieName)}
+         {console.log("Card =>",id, movieName)}
          <div className="max-w-sm bg-blueSpace-dark  px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
             <h3 className="mb-3 text-xl font-bold text-white">{movieName}</h3>
             <div className="relative">
@@ -109,6 +116,7 @@ const MovieCard = ({ id, movieName, movieYear, movieGenre, movieCountry, moviePo
                   </button>
                </div>
             </div>
+         {isOpeneditModal ? <EditMovieModal setIsopenEditModal={setIsopenEditModal}  id={id} movieName={movieName} movieYear={movieYear} movieGenre={movieGenre} moviePoster={moviePoster}/> : null}
          </div>
       </>
    );
