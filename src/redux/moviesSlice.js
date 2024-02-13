@@ -4,7 +4,7 @@ import axios from "axios";
 export const getMoviesFromServer = createAsyncThunk(
    "movies/getMoviesFromServer",
    async () => {
-      console.log("url=> ...");
+      console.log("GET From url =>  https://65c1574edc74300bce8d9620.mockapi.io/movies");
       return axios
          .get("https://65c1574edc74300bce8d9620.mockapi.io/movies")
          .then((res) => res.data);
@@ -55,33 +55,31 @@ const moviesSlice = createSlice({
          console.log("GET Movie => action.payload:", action.payload);
          return action.payload;
       }),
-         builder.addCase(addMoviesToServer.fulfilled, (state, action) => {
-            state.push(action.payload);
-         }),
-         builder.addCase(deleteMoviesFromServer.fulfilled, (state, action) => {
-            console.log("state =>", state);
-            console.log("deleteMoviesFromServer => action.payload",action.payload);
-
-            const newAllMovies = state.filter(
-               (movie) => movie.id != action.payload.id
-            );
-            return newAllMovies;
-         }),
-         builder.addCase(editMoviesFromServer.fulfilled, (state, action) => {
-            console.log("state =>", state);
-            console.log(
-               "**editMoviesFromServer => action.payload",
-               action.payload
-            );
-            const updatedMovie = action.payload;
-            const index = state.findIndex(
-               (movie) => movie.id === updatedMovie.id
-            );
-
-            if (index !== -1) {
-               state[index] = updatedMovie;
-            }
-         })
+      builder.addCase(addMoviesToServer.fulfilled, (state, action) => {
+         state.push(action.payload);
+      }),
+      builder.addCase(deleteMoviesFromServer.fulfilled, (state, action) => {
+         console.log("state =>", state);
+         console.log("deleteMoviesFromServer => action.payload",action.payload);
+         const newAllMovies = state.filter(
+            (movie) => movie.id != action.payload.id
+         );
+         return newAllMovies;
+      }),
+      builder.addCase(editMoviesFromServer.fulfilled, (state, action) => {
+         console.log("state =>", state);
+         console.log(
+            "**editMoviesFromServer => action.payload",
+            action.payload
+         );
+         const updatedMovie = action.payload;
+         const index = state.findIndex(
+            (movie) => movie.id === updatedMovie.id
+         );
+         if (index !== -1) {
+            state[index] = updatedMovie;
+         }
+      })
    },
 });
 
