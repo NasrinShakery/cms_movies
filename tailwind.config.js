@@ -31,6 +31,7 @@ export default {
       'cornflowerBlue': {
         light: '#ABAFD1',
         purple: '#767BFA',
+        dark: '#3D4780',
       },
       'magnenta' : '#E61E62'
      },
