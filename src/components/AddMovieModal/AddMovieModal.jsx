@@ -1,24 +1,36 @@
 import { useState } from "react";
 import { addMoviesToServer } from "../../redux/moviesSlice";
 import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 const AddMovieModal = () => {
-   const dispatch = useDispatch();
    const [showModal, setShowModal] = useState(false);
-   const [newMovie, setNewMovie] = useState({
-      movieName: "",
-      moviePoster: "",
-      movieGenre: "",
-      movieTime: "",
-      movieLanguage: "",
-      movieIsDubbed: false,
-      movieHasSubtitles: false,
-      movieCountry: "",
-      movieYear: "",
-   });
+   const dispatch = useDispatch();
 
-   const emptyInputs = () => {
-      setNewMovie({
+   const schema = yup
+      .object()
+      .shape({
+         movieName: yup.string().required("نام فیلم اجباری است"),
+         moviePoster: yup.string().required("پوستر برای فیلم بگذارید"),
+         movieGenre: yup.string().required("حداقل یک ژانر مشخص کنید"),
+         movieTime: yup.string().required("مدت زمان فیلم را بنویسید"),
+         movieLanguage: yup.string().required("زبان اصلی فیلم را بنویسید"),
+         movieIsDubbed: yup.boolean(),
+         movieHasSubtitles: yup.boolean(),
+         movieCountry: yup.string().required("فیلم ساخت کدام کشور است؟"),
+         movieYear: yup.string().required("تاریخ اکران فیلم را بنویسید"),
+      })
+      .required();
+
+   const {
+      register,
+      handleSubmit,
+      formState: { errors },
+      reset
+   } = useForm({
+      defaultValues: {
          movieName: "",
          moviePoster: "",
          movieGenre: "",
@@ -28,37 +40,17 @@ const AddMovieModal = () => {
          movieHasSubtitles: false,
          movieCountry: "",
          movieYear: "",
-      });
-   };
-
-   const newMovieHandler = (e) => {
-      const { name, value } = e.target;
-      setNewMovie((prevMovie) => ({
-         ...prevMovie,
-         [name]: value,
-      }));
-   };
-   const newMovieTranslateHandler = (e) => {
-      const { name, checked } = e.target;
-      setNewMovie((prevMovie) => ({
-         ...prevMovie,
-         [name]: checked,
-      }));
-   };
-
-   // const moviePosterHandler = (e) => {
-   //    if (e.target.files[0]) {
-   //       console.log("file =>", e.target.files[0]);
-   //    }
-   // };
-
-   const addMovieHandler = (event) => {
-      event.preventDefault();
+      },
+      resolver: yupResolver(schema)
+   });
+   const handlerSubmitting = (data) => {
+      console.log("submit Data =>", data);
+      dispatch(addMoviesToServer(data));
+      console.log("submit ADD MOVIES");
+      reset();
       setShowModal(false);
-      dispatch(addMoviesToServer(newMovie));
-      console.log("submit ADD MOVIES", newMovie);
-      emptyInputs();
    };
+
    return (
       <>
          <button
@@ -92,7 +84,10 @@ const AddMovieModal = () => {
                         </div>
                         {/* Form START */}
                         <div className="relative p-6 flex-auto">
-                           <form className="md:grid grid-cols-2 gap-4 bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 w-full">
+                           <form
+                              onSubmit={handleSubmit(handlerSubmitting)}
+                              className="md:grid grid-cols-2 gap-4 bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 w-full"
+                           >
                               {/* movie Name */}
                               <div>
                                  <label
@@ -104,11 +99,14 @@ const AddMovieModal = () => {
                                  <input
                                     type="text"
                                     id="movieName"
-                                    name="movieName"
-                                    value={newMovie.movieName}
-                                    onChange={newMovieHandler}
+                                    {...register("movieName")}
                                     className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
                                  />
+                                 {errors.movieName && (
+                                    <span className="text-red-500 text-xs">
+                                       {errors.movieName.message}
+                                    </span>
+                                 )}
                               </div>
                               {/* movie Poster */}
                               <div>
@@ -118,12 +116,14 @@ const AddMovieModal = () => {
                                  <input
                                     type="text"
                                     id="moviePoster"
-                                    name="moviePoster"
-                                    accept="image/png, image/jpeg"
-                                    onChange={newMovieHandler}
-                                    value={newMovie.moviePoster}
+                                    {...register("moviePoster")}
                                     className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
                                  />
+                                 {errors.moviePoster && (
+                                    <span className="text-red-500 text-xs">
+                                       {errors.moviePoster.message}
+                                    </span>
+                                 )}
                               </div>
                               {/* movie Genre */}
                               <div>
@@ -136,11 +136,14 @@ const AddMovieModal = () => {
                                  <input
                                     type="text"
                                     id="movieGenre"
-                                    name="movieGenre"
-                                    value={newMovie.movieGenre}
-                                    onChange={newMovieHandler}
+                                    {...register("movieGenre")}
                                     className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
                                  />
+                                 {errors.movieGenre && (
+                                    <span className="text-red-500 text-xs">
+                                       {errors.movieGenre.message}
+                                    </span>
+                                 )}
                               </div>
                               {/* movie Time */}
                               <div>
@@ -153,11 +156,14 @@ const AddMovieModal = () => {
                                  <input
                                     type="text"
                                     id="movieTime"
-                                    name="movieTime"
-                                    value={newMovie.movieTime}
-                                    onChange={newMovieHandler}
+                                    {...register("movieTime")}
                                     className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
                                  />
+                                 {errors.movieTime && (
+                                    <span className="text-red-500 text-xs">
+                                       {errors.movieTime.message}
+                                    </span>
+                                 )}
                               </div>
                               {/* movie Language */}
                               <div>
@@ -170,11 +176,14 @@ const AddMovieModal = () => {
                                  <input
                                     type="text"
                                     id="movieLanguage"
-                                    name="movieLanguage"
-                                    value={newMovie.movieLanguage}
-                                    onChange={newMovieHandler}
+                                    {...register("movieLanguage")}
                                     className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
                                  />
+                                 {errors.movieLanguage && (
+                                    <span className="text-red-500 text-xs">
+                                       {errors.movieLanguage.message}
+                                    </span>
+                                 )}
                               </div>
                               {/* movie Translate */}
                               <div>
@@ -188,9 +197,7 @@ const AddMovieModal = () => {
                                  <input
                                     type="checkbox"
                                     id="movieIsDubbed"
-                                    name="movieIsDubbed"
-                                    checked={newMovie.movieIsDubbed}
-                                    onChange={newMovieTranslateHandler}
+                                    {...register("movieIsDubbed")}
                                     className=""
                                  />
                                  {/* movie HasSubtitles */}
@@ -203,14 +210,12 @@ const AddMovieModal = () => {
                                  <input
                                     type="checkbox"
                                     id="movieHasSubtitles"
-                                    name="movieHasSubtitles"
-                                    checked={newMovie.movieHasSubtitles}
-                                    onChange={newMovieTranslateHandler}
+                                    {...register("movieHasSubtitles")}
                                     className=""
                                  />
                               </div>
                               {/* movie Country */}
-                              <div>
+                              <div className="flex flex-col">
                                  <label
                                     htmlFor="movieCountry"
                                     className="block text-black text-sm font-bold mb-1"
@@ -220,8 +225,7 @@ const AddMovieModal = () => {
                                  <select
                                     className="form-select text-gray-800"
                                     id="movieCountry"
-                                    name="movieCountry"
-                                    onChange={newMovieHandler}
+                                    {...register("movieCountry")}
                                  >
                                     <option value="">country</option>
                                     <option value="Afghanistan">
@@ -356,6 +360,11 @@ const AddMovieModal = () => {
                                     <option value="Yemen">Yemen</option>
                                     <option value="Zimbabwe">Zimbabwe</option>
                                  </select>
+                                 {errors.movieCountry && (
+                                    <span className="text-red-500 text-xs">
+                                       {errors.movieCountry.message}
+                                    </span>
+                                 )}
                               </div>
                               {/* movie Year */}
                               <div>
@@ -368,32 +377,33 @@ const AddMovieModal = () => {
                                  <input
                                     type="number"
                                     id="movieYear"
-                                    name="movieYear"
-                                    min={1300}
-                                    max={2030}
-                                    value={newMovie.movieYear}
-                                    onChange={newMovieHandler}
+                                    {...register("movieYear")}
                                     className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
                                  />
+                                 {errors.movieYear && (
+                                    <span className="text-red-500 text-xs">
+                                       {errors.movieYear.message}
+                                    </span>
+                                 )}
+                              </div>
+
+                              <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                                 <button
+                                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
+                                    type="button"
+                                    onClick={() => setShowModal(false)}
+                                 >
+                                    بستن
+                                 </button>
+                                 <button
+                                    className="text-white bg-green-500 active:bg-green-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                                    type="submit"
+                                    // onClick={addMovieHandler}
+                                 >
+                                    ثبت
+                                 </button>
                               </div>
                            </form>
-                        </div>
-                        {/* Form End */}
-                        <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-                           <button
-                              className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
-                              type="button"
-                              onClick={() => setShowModal(false)}
-                           >
-                              بستن
-                           </button>
-                           <button
-                              className="text-white bg-green-500 active:bg-green-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                              type="button"
-                              onClick={addMovieHandler}
-                           >
-                              ثبت
-                           </button>
                         </div>
                      </div>
                   </div>
