@@ -58,7 +58,7 @@ const AddMovieModal = () => {
             type="button"
             onClick={() => setShowModal(true)}
          >
-            <span className="block w-6 h-6 text-xl font-Dana border rounded-md">
+            <span className="block size-6 text-xl font-Dana border rounded-md">
                +
             </span>
 
@@ -391,7 +391,9 @@ const AddMovieModal = () => {
                                  <button
                                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
                                     type="button"
-                                    onClick={() => setShowModal(false)}
+                                    onClick={() => {
+                                          reset();
+                                       setShowModal(false)}}
                                  >
                                     بستن
                                  </button>
