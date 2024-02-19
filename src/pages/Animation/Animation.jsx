@@ -3,13 +3,14 @@ import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AnimationCard from "../../components/AnimationCard/AnimationCard";
 import AddMovieModal from "../../components/AddMovieModal/AddMovieModal";
+import { getAnimationsFromServer } from "../../redux/animationsSlice";
 
 const Animation = () => {
   // const allAnimation = useSelector((state) => state.animation);
-  //  const dispatch = useDispatch();
+   const dispatch = useDispatch();
 
    useEffect(() => {
-      // dispatch(getAnimationsFromServer());
+      dispatch(getAnimationsFromServer());
    }, []);
   return (
     <div>
