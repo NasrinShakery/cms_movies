@@ -1,26 +1,26 @@
 import { useState } from "react";
-import { addMoviesToServer } from "../../redux/moviesSlice";
+import { postAnimationToServer } from "../../redux/animationsSlice";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const AddMovieModal = () => {
+const AddAnimationmodal = () => {
    const [showModal, setShowModal] = useState(false);
    const dispatch = useDispatch();
 
    const schema = yup
       .object()
       .shape({
-         movieName: yup.string().required("نام فیلم اجباری است"),
-         moviePoster: yup.string().required("پوستر برای فیلم بگذارید"),
-         movieGenre: yup.string().required("حداقل یک ژانر مشخص کنید"),
-         movieTime: yup.string().required("مدت زمان فیلم را بنویسید"),
-         movieLanguage: yup.string().required("زبان اصلی فیلم را بنویسید"),
-         movieIsDubbed: yup.boolean(),
-         movieHasSubtitles: yup.boolean(),
-         movieCountry: yup.string().required("فیلم ساخت کدام کشور است؟"),
-         movieYear: yup.string().required("تاریخ اکران فیلم را بنویسید"),
+         animationName: yup.string().required("نام انیمیشن اجباری است"),
+         animationPoster: yup.string().required("پوستر برای انیمیشن بگذارید"),
+         animationGenre: yup.string().required("حداقل یک ژانر مشخص کنید"),
+         animationTime: yup.string().required("مدت زمان انیمیشن را بنویسید"),
+         animationLanguage: yup.string().required("زبان اصلی انیمیشن را بنویسید"),
+         animationIsDubbed: yup.boolean(),
+         animationHasSubtitles: yup.boolean(),
+         animationCountry: yup.string().required("انیمیشن ساخت کدام کشور است؟"),
+         animationYear: yup.string().required("تاریخ اکران انیمیشن را بنویسید"),
       })
       .required();
 
@@ -31,22 +31,22 @@ const AddMovieModal = () => {
       reset
    } = useForm({
       defaultValues: {
-         movieName: "",
-         moviePoster: "",
-         movieGenre: "",
-         movieTime: "",
-         movieLanguage: "",
-         movieIsDubbed: false,
-         movieHasSubtitles: false,
-         movieCountry: "",
-         movieYear: "",
+         animationName: "",
+         animationPoster: "",
+         animationGenre: "",
+         animationTime: "",
+         animationLanguage: "",
+         animationIsDubbed: false,
+         animationHasSubtitles: false,
+         animationCountry: "",
+         animationYear: "",
       },
       resolver: yupResolver(schema)
    });
    const handlerSubmitting = (data) => {
-      console.log("submit Data =>", data);
-      dispatch(addMoviesToServer(data));
-      console.log("submit ADD MOVIES");
+      // console.log("submit Data =>", data);
+      dispatch(postAnimationToServer(data));
+      console.log("submit ADD Animations =>", data);
       reset();
       setShowModal(false);
    };
@@ -76,7 +76,7 @@ const AddMovieModal = () => {
                      <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                         <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t ">
                            <h3 className="text-3xl text-gray-700">
-                              مشخصات فیلم
+                              مشخصات انیمیشن
                            </h3>
                            <button
                               className="bg-transparent border-0 text-black float-right"
@@ -96,20 +96,20 @@ const AddMovieModal = () => {
                               {/* movie Name */}
                               <div>
                                  <label
-                                    htmlFor="movieName"
+                                    htmlFor="animationName"
                                     className="block text-black text-sm font-bold mb-1"
                                  >
-                                    نام فیلم
+                                    نام انیمیشن
                                  </label>
                                  <input
                                     type="text"
-                                    id="movieName"
-                                    {...register("movieName")}
+                                    id="animationName"
+                                    {...register("animationName")}
                                     className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
                                  />
-                                 {errors.movieName && (
+                                 {errors.animationName && (
                                     <span className="text-red-500 text-xs">
-                                       {errors.movieName.message}
+                                       {errors.animationName.message}
                                     </span>
                                  )}
                               </div>
@@ -120,73 +120,73 @@ const AddMovieModal = () => {
                                  </label>
                                  <input
                                     type="text"
-                                    id="moviePoster"
-                                    {...register("moviePoster")}
+                                    id="animationPoster"
+                                    {...register("animationPoster")}
                                     className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
                                  />
-                                 {errors.moviePoster && (
+                                 {errors.animationPoster && (
                                     <span className="text-red-500 text-xs">
-                                       {errors.moviePoster.message}
+                                       {errors.animationPoster.message}
                                     </span>
                                  )}
                               </div>
                               {/* movie Genre */}
                               <div>
                                  <label
-                                    htmlFor="movieCountry"
+                                    htmlFor="animationCountry"
                                     className="block text-black text-sm font-bold mb-1"
                                  >
                                     ژانر
                                  </label>
                                  <input
                                     type="text"
-                                    id="movieGenre"
-                                    {...register("movieGenre")}
+                                    id="animationGenre"
+                                    {...register("animationGenre")}
                                     className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
                                  />
-                                 {errors.movieGenre && (
+                                 {errors.animationGenre && (
                                     <span className="text-red-500 text-xs">
-                                       {errors.movieGenre.message}
+                                       {errors.animationGenre.message}
                                     </span>
                                  )}
                               </div>
                               {/* movie Time */}
                               <div>
                                  <label
-                                    htmlFor="movieTime"
+                                    htmlFor="animationTime"
                                     className="block text-black text-sm font-bold mb-1"
                                  >
                                     مدت زمان فیلم
                                  </label>
                                  <input
                                     type="text"
-                                    id="movieTime"
-                                    {...register("movieTime")}
+                                    id="animationTime"
+                                    {...register("animationTime")}
                                     className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
                                  />
-                                 {errors.movieTime && (
+                                 {errors.animationTime && (
                                     <span className="text-red-500 text-xs">
-                                       {errors.movieTime.message}
+                                       {errors.animationTime.message}
                                     </span>
                                  )}
                               </div>
                               {/* movie Language */}
                               <div>
                                  <label
-                                    htmlFor="movieLanguage"
+                                    htmlFor="animationLanguage"
                                     className="block text-black text-sm font-bold mb-1"
                                  >
                                     زبان اصلی
                                  </label>
                                  <input
                                     type="text"
-                                    id="movieLanguage"
-                                    {...register("movieLanguage")}
+                                    id="animationLanguage"
+                                    {...register("animationLanguage")}
                                     className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
                                  />
-                                 {errors.movieLanguage && (
+                                 {errors.animationLanguage && (
                                     <span className="text-red-500 text-xs">
-                                       {errors.movieLanguage.message}
+                                       {errors.animationLanguage.message}
                                     </span>
                                  )}
                               </div>
@@ -194,43 +194,43 @@ const AddMovieModal = () => {
                               <div>
                                  {/* movie IsDubbed */}
                                  <label
-                                    htmlFor="movieIsDubbed"
+                                    htmlFor="animationIsDubbed"
                                     className="block text-black text-sm font-bold mb-1"
                                  >
                                     دوبله فارسی
                                  </label>
                                  <input
                                     type="checkbox"
-                                    id="movieIsDubbed"
-                                    {...register("movieIsDubbed")}
+                                    id="animationIsDubbed"
+                                    {...register("animationIsDubbed")}
                                     className=""
                                  />
                                  {/* movie HasSubtitles */}
                                  <label
-                                    htmlFor="movieHasSubtitles"
+                                    htmlFor="animationHasSubtitles"
                                     className="block text-black text-sm font-bold mb-1"
                                  >
                                     زیرنویس
                                  </label>
                                  <input
                                     type="checkbox"
-                                    id="movieHasSubtitles"
-                                    {...register("movieHasSubtitles")}
+                                    id="animationHasSubtitles"
+                                    {...register("animationHasSubtitles")}
                                     className=""
                                  />
                               </div>
                               {/* movie Country */}
                               <div className="flex flex-col">
                                  <label
-                                    htmlFor="movieCountry"
+                                    htmlFor="animationCountry"
                                     className="block text-black text-sm font-bold mb-1"
                                  >
                                     کشور سازنده
                                  </label>
                                  <select
                                     className="form-select text-gray-800"
-                                    id="movieCountry"
-                                    {...register("movieCountry")}
+                                    id="animationCountry"
+                                    {...register("animationCountry")}
                                  >
                                     <option value="">country</option>
                                     <option value="Afghanistan">
@@ -365,29 +365,29 @@ const AddMovieModal = () => {
                                     <option value="Yemen">Yemen</option>
                                     <option value="Zimbabwe">Zimbabwe</option>
                                  </select>
-                                 {errors.movieCountry && (
+                                 {errors.animationCountry && (
                                     <span className="text-red-500 text-xs">
-                                       {errors.movieCountry.message}
+                                       {errors.animationCountry.message}
                                     </span>
                                  )}
                               </div>
                               {/* movie Year */}
                               <div>
                                  <label
-                                    htmlFor="movieYear"
+                                    htmlFor="animationYear"
                                     className="block text-black text-sm font-bold mb-1"
                                  >
                                     سال ساخت
                                  </label>
                                  <input
                                     type="number"
-                                    id="movieYear"
-                                    {...register("movieYear")}
+                                    id="animationYear"
+                                    {...register("animationYear")}
                                     className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
                                  />
-                                 {errors.movieYear && (
+                                 {errors.animationYear && (
                                     <span className="text-red-500 text-xs">
-                                       {errors.movieYear.message}
+                                       {errors.animationYear.message}
                                     </span>
                                  )}
                               </div>
@@ -403,7 +403,6 @@ const AddMovieModal = () => {
                                  <button
                                     className="text-white bg-green-500 active:bg-green-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                                     type="submit"
-                                    // onClick={addMovieHandler}
                                  >
                                     ثبت
                                  </button>
@@ -417,6 +416,6 @@ const AddMovieModal = () => {
          ) : null}
       </>
    );
-};
+}
 
-export default AddMovieModal;
+export default AddAnimationmodal
