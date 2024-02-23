@@ -2,7 +2,7 @@ import { useState } from "react";
 import  { deleteAnimationFromServer } from "../../redux/animationsSlice";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
-import EditMovieModal from "../EditMovieModal/EditMovieModal";
+import EditAnimationModal from "../EditAnimationModal/EditAnimationModal";
 
 const AnimationCard = ({
    id,
@@ -244,7 +244,7 @@ const AnimationCard = ({
             </div>
          </div>
             {isOpeneditModal ? (
-               <EditMovieModal
+               <EditAnimationModal
                   setIsopenEditModal={setIsopenEditModal}
                   id={id}
                   animationName={animationName}

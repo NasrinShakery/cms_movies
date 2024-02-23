@@ -128,7 +128,7 @@ const EditMovieModal = ({
                               {/* movie Genre */}
                               <div>
                                  <label
-                                    htmlFor="movieCountry"
+                                    htmlFor="movieGenre"
                                     className="block text-black text-sm font-bold mb-1"
                                  >
                                     ژانر

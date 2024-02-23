@@ -93,7 +93,7 @@ const AddAnimationmodal = () => {
                               onSubmit={handleSubmit(handlerSubmitting)}
                               className="md:grid grid-cols-2 gap-4 bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 w-full"
                            >
-                              {/* movie Name */}
+                              {/* animation Name */}
                               <div>
                                  <label
                                     htmlFor="animationName"
@@ -113,7 +113,7 @@ const AddAnimationmodal = () => {
                                     </span>
                                  )}
                               </div>
-                              {/* movie Poster */}
+                              {/* animation Poster */}
                               <div>
                                  <label className="block text-black text-sm font-bold mb-1">
                                     پوستر
@@ -130,7 +130,7 @@ const AddAnimationmodal = () => {
                                     </span>
                                  )}
                               </div>
-                              {/* movie Genre */}
+                              {/* animation Genre */}
                               <div>
                                  <label
                                     htmlFor="animationCountry"
@@ -150,7 +150,7 @@ const AddAnimationmodal = () => {
                                     </span>
                                  )}
                               </div>
-                              {/* movie Time */}
+                              {/* animation Time */}
                               <div>
                                  <label
                                     htmlFor="animationTime"
@@ -170,7 +170,7 @@ const AddAnimationmodal = () => {
                                     </span>
                                  )}
                               </div>
-                              {/* movie Language */}
+                              {/* animation Language */}
                               <div>
                                  <label
                                     htmlFor="animationLanguage"
@@ -190,9 +190,9 @@ const AddAnimationmodal = () => {
                                     </span>
                                  )}
                               </div>
-                              {/* movie Translate */}
+                              {/* animation Translate */}
                               <div>
-                                 {/* movie IsDubbed */}
+                                 {/* animation IsDubbed */}
                                  <label
                                     htmlFor="animationIsDubbed"
                                     className="block text-black text-sm font-bold mb-1"
@@ -205,7 +205,7 @@ const AddAnimationmodal = () => {
                                     {...register("animationIsDubbed")}
                                     className=""
                                  />
-                                 {/* movie HasSubtitles */}
+                                 {/* animation HasSubtitles */}
                                  <label
                                     htmlFor="animationHasSubtitles"
                                     className="block text-black text-sm font-bold mb-1"
@@ -219,7 +219,7 @@ const AddAnimationmodal = () => {
                                     className=""
                                  />
                               </div>
-                              {/* movie Country */}
+                              {/* animation Country */}
                               <div className="flex flex-col">
                                  <label
                                     htmlFor="animationCountry"
@@ -371,7 +371,7 @@ const AddAnimationmodal = () => {
                                     </span>
                                  )}
                               </div>
-                              {/* movie Year */}
+                              {/* animation Year */}
                               <div>
                                  <label
                                     htmlFor="animationYear"
