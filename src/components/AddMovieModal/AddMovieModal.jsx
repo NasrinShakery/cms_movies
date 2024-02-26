@@ -28,7 +28,7 @@ const AddMovieModal = () => {
       register,
       handleSubmit,
       formState: { errors },
-      reset
+      reset,
    } = useForm({
       defaultValues: {
          movieName: "",
@@ -41,7 +41,7 @@ const AddMovieModal = () => {
          movieCountry: "",
          movieYear: "",
       },
-      resolver: yupResolver(schema)
+      resolver: yupResolver(schema),
    });
    const handlerSubmitting = (data) => {
       console.log("submit Data =>", data);
@@ -51,10 +51,10 @@ const AddMovieModal = () => {
       setShowModal(false);
    };
 
-   const closeModalHandler = ()=> {
+   const closeModalHandler = () => {
       reset();
-      setShowModal(false)
-   }
+      setShowModal(false);
+   };
 
    return (
       <>
