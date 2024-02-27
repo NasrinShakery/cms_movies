@@ -1,9 +1,8 @@
 import { editMoviesFromServer } from "../../redux/moviesSlice";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-// import { data } from "autoprefixer";
 
 const EditMovieModal = ({
    setIsopenEditModal,
@@ -61,7 +60,7 @@ const EditMovieModal = ({
       dispatch(editMoviesFromServer(data));
       console.log("submit ADD MOVIES");
       closeModalHandler();
-   }
+   };
    const closeModalHandler = () => {
       reset();
       setIsopenEditModal(false);
@@ -69,8 +68,6 @@ const EditMovieModal = ({
 
    return (
       <>
-         {/* {console.log("edit modal -> OPENED -->", id)} */}
-         {/* {console.log("edit modal --> currentMovie", data)} */}
          <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -78,7 +75,7 @@ const EditMovieModal = ({
                      <h3 className="text-3xl text-gray-700">مشخصات فیلم</h3>
                      <button
                         className="bg-transparent border-0 text-black float-right"
-                        onClick={() => setIsopenEditModal(false)}
+                        onClick={() => closeModalHandler()}
                      >
                         <span className="text-black opacity-7 h-6 w-6 text-xl block bg-gray-400 py-0 rounded-full">
                            x
@@ -364,7 +361,7 @@ const EditMovieModal = ({
                            <button
                               className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
                               type="button"
-                              onClick={() => setIsopenEditModal(false)}
+                              onClick={() => closeModalHandler()}
                            >
                               بستن
                            </button>
