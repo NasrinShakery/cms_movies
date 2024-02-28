@@ -23,7 +23,7 @@ const RecentBox = () => {
          </div>
          <span>تاریخ ایجاد</span>
       </div>
-      {allMovies.length && allMovies.map( movie => (
+      {allMovies.length && allMovies.slice(0, 4).map( movie => (
          <>
             <div className="flex justify-between items-center px-5 py-1 bg-cornflowerBlue-dark/65 rounded-[10px]">
                <div className="flex items-center justify-between gap-4">
